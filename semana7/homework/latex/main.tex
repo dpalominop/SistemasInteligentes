@@ -36,7 +36,7 @@
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage[pdftex]{graphicx}	
 \usepackage{url}
-
+\usepackage{hyperref}
 
 %%% Custom sectioning
 \usepackage{sectsty}
@@ -60,6 +60,44 @@
 \numberwithin{figure}{section}			% Figurenumbering: section.fig#
 \numberwithin{table}{section}				% Tablenumbering: section.tab#
 
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+% frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
 
 %%% Maketitle metadata
 \newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
@@ -246,6 +284,8 @@
         \item $((3,1),-1)$: -2
     \end{enumerate}
     
+    \newpage
+    
     Por lo tanto: 
     Los ejemplos separables son:\\
     ${((1,6),-1), ((4,9),-1), ((4,6),-1), ((5,1),1), ((9,1),1)}$
@@ -264,7 +304,7 @@
     Enuncidado NO definido.
 
 \end{enumerate}
-
+\newpage
 \section{Preguntas de Investigación}
 
 \begin{enumerate}
@@ -274,14 +314,201 @@
     
 \end{enumerate}
 
+\newpage
 \section{Implementación}
 
 \begin{enumerate}
     \item Usando Scikit-learn de Python, implemente (comente su código) una svm que clasifique el conjunto de datos (por definir).
     
+    Como no se ha incluído el dataset, he propuesto trabajar el presente ejercicio con el siguiente dataset (banknote authentication):\\
+    \url{https://drive.google.com/file/d/13nw-uRXPY8XIZQxKRNZ3yYlho-CYm_Qt/view}\\
+    
+    \textbf{Lectura de Dataset}
+    
+    \begin{python}
+    import pandas as pd  
+    import numpy as np  
+    import matplotlib.pyplot as plt  
+    %matplotlib inline
+    
+    # Lectura del Dataset usando pandas
+    bankdata = pd.read_csv("bill_authentication.csv")
+    \end{python}
+    
+    \textbf{Exploración de Datos}
+    
+    \begin{python}
+    # Dimensiones del Dataset
+    bankdata.shape
+    # Descripcion del Dataset
+    bankdata.head()
+    \end{python}
+    
+    \includegraphics[scale=0.8]{df1_head}
+    
+    \textbf{Preprocesamiento}
+    
+    \begin{python}
+    # Separacion de las columnas del dataset para crear los valores de entrada 
+    # y el valor de salida
+    X = bankdata.drop('Class', axis=1)
+    y = bankdata['Class']
+    from sklearn.model_selection import train_test_split
+    # Separación del dataset en valores de entranemiento y testeo
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
+    \end{python}
+    
+    \textbf{Entrenamiento}
+    
+    \begin{python}
+    from sklearn.svm import SVC
+    # Elección del Kernel: linear
+    svclassifier = SVC(kernel='linear')
+    # Ejecución del entrenamiento
+    svclassifier.fit(X_train, y_train)
+    \end{python}
+    
+    \textbf{Predicción y Validación}
+    
+    \begin{python}
+    # Predicción usando los valores de testeo
+    y_pred = svclassifier.predict(X_test)
+    from sklearn.metrics import classification_report, confusion_matrix
+    # Creación de la matriz de confusión
+    print(confusion_matrix(y_test,y_pred))
+    # Creación de reporte de resultados
+    print(classification_report(y_test,y_pred))
+    \end{python}
+    
+    \includegraphics[scale=0.8]{df1_results}
+    
     \item Experimente y muestre resultados usando diferentes valores para los parámetros de los kernels: lineal, polinomial, gaussiano, y el parámetro $C$. Los resultados deben ser mostrados en el documento pdf.
     
+    Como no se ha incluído el dataset, he propuesto trabajar el presente ejercicio con el siguiente dataset (Iris Flower): \url{https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data}\\
+    
+    \textbf{Lectura de Dataset}
+    
+    \begin{python}
+    import numpy as np  
+    import matplotlib.pyplot as plt  
+    import pandas as pd
+    
+    url = "https://archive.ics.uci.edu/ml/machine-learning-databases"
+          "/iris/iris.data"
+    # Asignar columnas al Dataset para su posterior lectura
+    colnames = ['sepal-length', 'sepal-width', 
+                'petal-length', 'petal-width', 'Class']
+    # Lectura del Dataset usando pandas
+    irisdata = pd.read_csv(url, names=colnames)
+    \end{python}
+    
+    \textbf{Exploración de Datos}
+    
+    \begin{python}
+    # Descripción del Dataset
+    bankdata.head()
+    \end{python}
+    
+    \includegraphics[scale=0.8]{df2_head}
+    
+    \textbf{Preprocesamiento}
+    
+    \begin{python}
+    # Separación de las columnas del dataset para crear los valores de entrada
+    # y el valor de salida
+    X = irisdata.drop('Class', axis=1)  
+    y = irisdata['Class'] 
+    # Separación del dataset en valores de entranemiento y testeo
+    from sklearn.model_selection import train_test_split  
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20) 
+    \end{python}
+    
+    \textbf{Lineal}
+    
+    \textbf{Entrenamiento}
+    
+    \begin{python}
+    from sklearn.svm import SVC
+    # Elección del Kernel: linear
+    svclassifier = SVC(kernel='linear')
+    # Ejecución del entrenamiento
+    svclassifier.fit(X_train, y_train)
+    \end{python}
+    
+    \textbf{Predicción y Validación}
+    
+    \begin{python}
+    # Predicción usando los valores de testeo
+    y_pred = svclassifier.predict(X_test)
+    from sklearn.metrics import classification_report, confusion_matrix
+    # Creación de la matriz de confusión
+    print(confusion_matrix(y_test,y_pred))
+    # Creación de reporte de resultados
+    print(classification_report(y_test,y_pred))
+    \end{python}
+    
+    \includegraphics[scale=0.8]{df2_results_linear}
+    
+    \textbf{Polinomial}
+    
+    \textbf{Entrenamiento}
+    
+    \begin{python}
+    from sklearn.svm import SVC
+    # Elección del Kernel: poly
+    svclassifier = SVC(kernel='poly')
+    # Ejecución del entrenamiento
+    svclassifier.fit(X_train, y_train)
+    \end{python}
+    
+    \textbf{Predicción y Validación}
+    
+    \begin{python}
+    # Predicción usando los valores de testeo
+    y_pred = svclassifier.predict(X_test)
+    from sklearn.metrics import classification_report, confusion_matrix
+    # Creación de la matriz de confusión
+    print(confusion_matrix(y_test,y_pred))
+    # Creación de reporte de resultados
+    print(classification_report(y_test,y_pred))
+    \end{python}
+    
+    \includegraphics[scale=0.8]{df2_results_poly}
+    
+    \textbf{Gaussiano}
+    
+    \textbf{Entrenamiento}
+    
+    \begin{python}
+    from sklearn.svm import SVC
+    # Elección del Kernel: rbf
+    svclassifier = SVC(kernel='rbf')
+    # Ejecución del entrenamiento
+    svclassifier.fit(X_train, y_train)
+    \end{python}
+    
+    \textbf{Predicción y Validación}
+    
+    \begin{python}
+    # Predicción usando los valores de testeo
+    y_pred = svclassifier.predict(X_test)
+    from sklearn.metrics import classification_report, confusion_matrix
+    # Creación de la matriz de confusión
+    print(confusion_matrix(y_test,y_pred))
+    # Creación de reporte de resultados
+    print(classification_report(y_test,y_pred))
+    \end{python}
+    
+    \includegraphics[scale=0.8]{df2_results_gaussian}
+    
     \item Dentro de la sección de Implementación incluya una subsección donde indique las instrucciones para ejecutar el código.
+    
+    La presente implementación ha sido realizada en python 3.6 usando anaconda y jupyter-lab como herramientas de virtualización y visualización.
+    
+    El notebook desarrollado que incluye todos los pasos descritos, así como los datasets, ha sido publicado en mi cunta de github:\\
+    
+    \url{https://github.com/dpalominop/SistemasInteligentes/blob/master/semana7/homework/svm.ipynb}
+    
 \end{enumerate}
 
 %%% End document
