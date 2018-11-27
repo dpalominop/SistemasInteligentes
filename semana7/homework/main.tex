@@ -1,0 +1,137 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX Example: Project Report
+%
+% Source: http://www.howtotex.com
+%
+% Feel free to distribute this example, but please keep the referral
+% to howtotex.com
+% Date: March 2011 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use writeLaTeX: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+% If you're new to LaTeX, the wikibook is a great place to start:
+% http://en.wikibooks.org/wiki/LaTeX
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Edit the title below to update the display in My Documents
+%\title{Project Report}
+%
+%%% Preamble
+\documentclass[paper=a4, fontsize=11pt]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}															% English language/hyphenation
+\usepackage[protrusion=true,expansion=true]{microtype}	
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage[pdftex]{graphicx}	
+\usepackage{url}
+
+
+%%% Custom sectioning
+\usepackage{sectsty}
+\allsectionsfont{\normalfont\scshape}
+
+
+%%% Custom headers/footers (fancyhdr package)
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead{}											% No page header
+\fancyfoot[L]{}											% Empty 
+\fancyfoot[C]{}											% Empty
+\fancyfoot[R]{\thepage}									% Pagenumbering
+\renewcommand{\headrulewidth}{0pt}			% Remove header underlines
+\renewcommand{\footrulewidth}{0pt}				% Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}		% Equationnumbering: section.eq#
+\numberwithin{figure}{section}			% Figurenumbering: section.fig#
+\numberwithin{table}{section}				% Tablenumbering: section.tab#
+
+
+%%% Maketitle metadata
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
+
+\title{
+		%\vspace{-1in} 	
+		\usefont{OT1}{bch}{b}{n}
+		\normalfont \normalsize \textsc{Universidad Católica de San Pablo \\
+		Maestría en Ciencia de la Computación \\
+        Sistemas Inteligentes} \\ [25pt]
+		\horrule{0.5pt} \\[0.4cm]
+		\huge Máquina de Vectores de Soporte (SVM) \\
+        Prof. Graciela Meza Lovón \\
+		\horrule{2pt} \\[0.5cm]
+}
+\author{
+		\normalfont 								\normalsize
+        Palomino Paucar, Daniel Alfredo\\[-3pt]		\normalsize
+        Noviembre 26, 2018
+}
+\date{}
+
+%%% Begin document
+\begin{document}
+\maketitle
+
+\newpage
+\section{Preguntas de Teoría}
+
+Sea el conjunto $S={((1,6),-1), ((4,9),-1), ((4,6),-1), ((5,1),1), ((9,5),1), ((9,1),1)}$ y un conjunto de cuatro hiperplanos $H = {H_1, H_2, H_3, H_4}$ definidos como: $H_1: x_1 - x_2 -1 = 0$, $H_2: 2x_1 - 7x_2 +32 =0$, $H_3: \sqrt{\frac{1}{2}}x_1 - \sqrt{\frac{1}{2}}x_2 - \sqrt{\frac{1}{2}} = 0$, $H_4: 2x_1 - 7x_2 -32 = 0$
+
+\begin{enumerate}
+    \item Usando cualquier lenguaje de programación grafique $S,\ H_1,\ H_2,\ H_3\ y\ H_4$.
+    
+    \item Encuentre  los parámetros $w$ y $b$ que definen los hiperplanos $H_1,\  H_2,\ H_3\ y\ H_4$, y luego determine para $H_1,\  H_2,\ H_3\ y\ H_4$ si son hiperplanos de separación. Fundamente.
+    
+    \item En el conjunto $H$, ¿cuántos hiperplanos iguales existen?. En el caso de que existan ¿cuáles son éstos? Fundamente.
+    
+    \item Calcule el margen $\tau$ para cada hiperplano de separación. Luego, suponga que el conjunto $H$ contiene al hiperplano óptimo  $H^*$, ¿cuál sería $H^*$? Fundamente.
+    
+    \item ¿Cuáles son los vectores de soporte del hiperplano $H^*$ escogido en la pregunta anterior?. Fundamente. (No necesita encontrar los valores $\alpha$)
+    
+    \item Demuestre la primera condición KKT, i.e. (Ec. 7 de las diapositivas) $\frac{\partial L}{\partial w}(w^*, b^*, \alpha) = w^* - \sum_{i=1}^{m}\alpha_iy(i)x^{i}$
+    
+Sea el conjunto $N = {((1,6),-1), ((4,9),-1), ((4,6),-1), ((5,1),1), ((9,1),1), ((0,3),1), ((2,2),-1), ((3,1),-1)}$ y el hiperplano $H_1$ definido anteriormente.
+
+    \item Usando cualquier lenguaje de programación grafique $N$ y $H_5$
+    
+    \item Identifique los ejemplos que son separables y los que no lo son. Luego, determine los ejemplos que son clasificados correctamente y los que no.
+    
+    \item Calcule la ... de los ejemplos no separables.
+
+\end{enumerate}
+
+\section{Preguntas de Investigación}
+
+\begin{enumerate}
+    \item Explique el significados de la constante $C$ en el término $C\sum_{i=1}\epsilon_i$ que se agrega a la función objetivo en el caso de ejemplos casi linealmente separables. Luego, explique la influencia de $C$ en la capacidad de generalización de una SVM.
+    
+    \item Describa el significado del parámetro $\gamma$ en el kernel gaussiano. Luego, explique la influencia de $\gamma$ en la capacidad de generalización de una SVM.
+    
+\end{enumerate}
+
+\section{Implementación}
+
+\begin{enumerate}
+    \item Usando Scikit-learn de Python, implemente (comente su código) una svm que clasifique el conjunto de datos (por definir).
+    
+    \item Experimente y muestre resultados usando diferentes valores para los parámetros de los kernels: lineal, polinomial, gaussiano, y el parámetro $C$. Los resultados deben ser mostrados en el documento pdf.
+    
+    \item Dentro de la sección de Implementación incluya una subsección donde indique las instrucciones para ejecutar el código.
+\end{enumerate}
+
+%%% End document
+\end{document}
