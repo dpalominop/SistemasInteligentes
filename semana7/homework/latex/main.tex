@@ -89,28 +89,179 @@
 \newpage
 \section{Preguntas de Teoría}
 
-Sea el conjunto $S={((1,6),-1), ((4,9),-1), ((4,6),-1), ((5,1),1), ((9,5),1), ((9,1),1)}$ y un conjunto de cuatro hiperplanos $H = {H_1, H_2, H_3, H_4}$ definidos como: $H_1: x_1 - x_2 -1 = 0$, $H_2: 2x_1 - 7x_2 +32 =0$, $H_3: \sqrt{\frac{1}{2}}x_1 - \sqrt{\frac{1}{2}}x_2 - \sqrt{\frac{1}{2}} = 0$, $H_4: 2x_1 - 7x_2 -32 = 0$
+\textbf{Sea el conjunto $S={((1,6),-1), ((4,9),-1), ((4,6),-1), ((5,1),1), ((9,5),1), ((9,1),1)}$ y un conjunto de cuatro hiperplanos $H = {H_1, H_2, H_3, H_4}$ definidos como: $H_1: x_1 - x_2 -1 = 0$, $H_2: 2x_1 - 7x_2 +32 =0$, $H_3: \sqrt{\frac{1}{2}}x_1 - \sqrt{\frac{1}{2}}x_2 - \sqrt{\frac{1}{2}} = 0$, $H_4: 2x_1 - 7x_2 -32 = 0$}
 
 \begin{enumerate}
     \item Usando cualquier lenguaje de programación grafique $S,\ H_1,\ H_2,\ H_3\ y\ H_4$.
     
+    \includegraphics[scale=0.4]{S}
+    
+    \includegraphics[scale=0.4]{H1}
+    
+    \includegraphics[scale=0.4]{H2}
+    
+    \includegraphics[scale=0.4]{H3}
+    
+    \includegraphics[scale=0.4]{H4}
+    
     \item Encuentre  los parámetros $w$ y $b$ que definen los hiperplanos $H_1,\  H_2,\ H_3\ y\ H_4$, y luego determine para $H_1,\  H_2,\ H_3\ y\ H_4$ si son hiperplanos de separación. Fundamente.
     
-    \item En el conjunto $H$, ¿cuántos hiperplanos iguales existen?. En el caso de que existan ¿cuáles son éstos? Fundamente.
+    Dadas la ecuación vectorial de un hiperplano: $W.X + b = 0$, se tiene al extender la ecuación: $w_1.x_1 + w_2.x_2 + w_3.w_3 +b = 0$.
     
-    \item Calcule el margen $\tau$ para cada hiperplano de separación. Luego, suponga que el conjunto $H$ contiene al hiperplano óptimo  $H^*$, ¿cuál sería $H^*$? Fundamente.
+    Dando la forma a la ecuaciones dadas:
     
-    \item ¿Cuáles son los vectores de soporte del hiperplano $H^*$ escogido en la pregunta anterior?. Fundamente. (No necesita encontrar los valores $\alpha$)
+    \begin{enumerate}
+        \item $H_1:$
+                $$ x_1 - x_2 -1 = 0 $$
+                $$ (1,-1,0).X - 1 =0 $$
+                Entonces: $$W = (1,-1,0) \wedge b=-1$$
+                
+                Graficando:
+                
+                \includegraphics[scale=0.4]{S_H1}
+                
+                Por lo tanto $H_1$: Sí es un hiperplano de separación.
+                
+        \item $H_2:$
+                $$ 2x_1 - 7x_2 +32 =0 $$
+                $$ (2,-7,0).X +32 =0 $$
+                Entonces: $$W=(2,-7,0) \wedge b=32$$
+                
+                Graficando:
+                
+                \includegraphics[scale=0.4]{S_H2}
+                
+                Por lo tanto $H_2$: Sí es un hiperplano de separación.
+                
+        \item $H_3:$
+                $$ \sqrt{\frac{1}{2}}x_1 - \sqrt{\frac{1}{2}}x_2 - \sqrt{\frac{1}{2}} = 0 $$
+                $$ (1,-1,0).X -1 =0 $$
+                Entonces: $$W = (\sqrt{\frac{1}{2}},-\sqrt{\frac{1}{2}},0) \wedge b=-\sqrt{\frac{1}{2}}$$
+                
+                Graficando:
+                
+                \includegraphics[scale=0.4]{S_H3}
+                
+                Por lo tanto $H_3$: Sí es un hiperplano de separación.
+                
+        \item $H_4:$
+                $$ 2x_1 - 7x_2 -32 = 0 $$
+                $$ (2,-7,0).X - 32=0 $$
+                Entonces: $$W=(2,-7,0) \wedge b=-32$$
+                
+                Graficando:
+                
+                \includegraphics[scale=0.4]{S_H4}
+                
+                Por lo tanto $H_4$: No es un hiperplano de separación.\\
+                
+    \end{enumerate}
     
-    \item Demuestre la primera condición KKT, i.e. (Ec. 7 de las diapositivas) $\frac{\partial L}{\partial w}(w^*, b^*, \alpha) = w^* - \sum_{i=1}^{m}\alpha_iy(i)x^{i}$
     
-Sea el conjunto $N = {((1,6),-1), ((4,9),-1), ((4,6),-1), ((5,1),1), ((9,1),1), ((0,3),1), ((2,2),-1), ((3,1),-1)}$ y el hiperplano $H_1$ definido anteriormente.
+    \item En el conjunto $H$, ¿cuántos hiperplanos iguales existen?. En el caso de que existan ¿cuáles son éstos? Fundamente.\\
+    
+    Existen 2 hiperplanos iguales $H_1\ y\ H_3$, dado que si a la ecuación de $H_3$ la dividimos entre $\sqrt{\frac{1}{2}}$ tendríamos la misma ecuación que $H_1$.\\
+    
+    
+    \item Calcule el margen $\tau$ para cada hiperplano de separación. Luego, suponga que el conjunto $H$ contiene al hiperplano óptimo  $H^*$, ¿cuál sería $H^*$? Fundamente.\\
+    
+    \begin{enumerate}
+        \item $H_1$:
+                $$\tau_1 = 2.1213$$
+                
+        \item $H_2$:
+                $$\tau_2 = 0.2742$$
+                
+        \item $H_3$:
+                $$\tau_3 = 2.1213$$
+    \end{enumerate}
+    
+    De acuerdo a los datos calculados, si el hiperplano $H^*$ existiera en el conjunto $H$, este sería $H_1$ o $H_3$ (pues representan el mismo plano), dado que poseen el $\tau$ con mayor valor.
+    
+    \item ¿Cuáles son los vectores de soporte del hiperplano $H^*$ escogido en la pregunta anterior?. Fundamente. (No necesita encontrar los valores $\alpha$)\\
+    
+    Los vectores de soporte del hiperplano óptimo elegido ($H_1$ o $H_3$)serían:
+    
+    $$(4,6,-1),\ (5,1,1),\ (9,5,1)$$
+    
+    pues se encuentran en el margen óptimo, teniendo cada vector el $\tau$ mínimo de $2.1313$.\\
+    
+    \item Demuestre la primera condición KKT, i.e. (Ec. 7 de las diapositivas) $\frac{\partial L}{\partial w}(w^*, b^*, \alpha) = w^* - \sum_{i=1}^{m}\alpha_iy(i)x^{i}$\\
+    
+    Sea: $$L = \frac{1}{2}W.W^T - \sum_{i=1}^{m}\alpha_i[y^{(i)}(W^{T}X^{(i)} + b) - 1]$$
+    
+    Expandiendo los términos:
+    
+    $$L = \frac{1}{2}W.W^T - \sum_{i=1}^{m}\alpha_i[y^{(i)}W^{T}X^{(i)}] - \sum_{i=1}^{m}\alpha_i[y^{(i)}b] + \sum_{i=1}^{m}\alpha_i$$
+    
+    Para encontrar los $W*, b^*, \alpha^*$ óptimo, necesitamos derivar respecto de los parámetros, lo cual se describe en la ecuación 1:
+    
+    $$\frac{\partial L(W^*, b^*, \alpha^* )}{\partial w_i}=0, i=1,...,n$$
+    
+    Entonces, derivando $L$ respecto de $w_i$ tenemos:
+    
+    $$\frac{\partial L(W^*, b^*, \alpha^* )}{\partial w_i}=\frac{\partial (\frac{1}{2}W.W^T - \sum_{i=1}^{m}\alpha_i[y^{(i)}W^{T}X^{(i)}] - \sum_{i=1}^{m}\alpha_i[y^{(i)}b] + \sum_{i=1}^{m}\alpha_i)}{\partial w_i}$$
+    
+    Separando los términos de la derecha:
+    
+    $$\frac{\partial L(W^*, b^*, \alpha^* )}{\partial w_i}=\frac{\partial (\frac{1}{2}W.W^T)}{\partial w_i} - \frac{\partial (\sum_{i=1}^{m}\alpha_i[y^{(i)}W^{T}X^{(i)}])}{\partial w_i} - \frac{\partial (\sum_{i=1}^{m}\alpha_i[y^{(i)}b])}{\partial w_i}+ \frac{\partial (\sum_{i=1}^{m}\alpha_i)}{\partial w_i}$$
+    
+    El tercer y cuarto término de la derecha no depende de $w_i$, por lo tanto al derevirase desapareceran:
+    
+    $$\frac{\partial L(W^*, b^*, \alpha^* )}{\partial w_i}=\frac{\partial (\frac{1}{2}W.W^T)}{\partial w_i} - \frac{\partial (\sum_{i=1}^{m}\alpha_i[y^{(i)}W^{T}X^{(i)}])}{\partial w_i}$$
+    
+    Finalmente calculando la derivada parcial:
+    
+    $$\frac{\partial L}{\partial w}(w^*, b^*, \alpha) = w^* - \sum_{i=1}^{m}\alpha_iy(i)x^{i}=0$$
+    
+    Quedando demostrado la ecuación 7 de las diapositivas.\\
+    
 
-    \item Usando cualquier lenguaje de programación grafique $N$ y $H_5$
+\textbf{Sea el conjunto $N = {((1,6),-1), ((4,9),-1), ((4,6),-1), ((5,1),1), ((9,1),1), ((0,3),1), ((2,2),-1), ((3,1),-1)}$ y el hiperplano $H_1$ definido anteriormente.}\\
+
+    \item Usando cualquier lenguaje de programación grafique $N$ y $H_5$.
+    
+    Graficando:
+        
+    \includegraphics[scale=0.4]{N}
+    
+    \includegraphics[scale=0.4]{N_H5}
     
     \item Identifique los ejemplos que son separables y los que no lo son. Luego, determine los ejemplos que son clasificados correctamente y los que no.
     
+    Para que un vector sea separable debe cumplir:
+    
+    $$y_i(W^TX)\geq 1$$
+    
+    Por lo tanto haciendo los cálculos para los ejemplos del espacion $N$ y el hiperplano $H_5$:
+    
+    \begin{enumerate}
+        \item $((1,6),-1)$: 5
+        \item $((4,9),-1)$: 5
+        \item $((4,6),-1)$: 2
+        \item $((5,1),1)$: 4
+        \item $((9,1),1)$: 8
+        \item $((0,3),1)$: -3
+        \item $((2,2),-1)$: 0
+        \item $((3,1),-1)$: -2
+    \end{enumerate}
+    
+    Por lo tanto: 
+    Los ejemplos separables son:\\
+    ${((1,6),-1), ((4,9),-1), ((4,6),-1), ((5,1),1), ((9,1),1)}$
+    
+    y los no separables son:\\
+    ${((0,3),1), ((2,2),-1), ((3,1),-1)}$
+    
+    Así mismo, los ejemplos clasificados correctamente son:\\
+    ${((1,6),-1), ((4,9),-1), ((4,6),-1), ((5,1),1), ((9,1),1)}, ((2,2),-1)$
+    
+    y los no clasficados correctamente son:\\
+    ${((0,3),1), ((3,1),-1)}$\\
+    
     \item Calcule la ... de los ejemplos no separables.
+    
+    Enuncidado NO definido.
 
 \end{enumerate}
 
