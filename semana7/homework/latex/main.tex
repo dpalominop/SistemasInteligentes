@@ -116,7 +116,8 @@ showstringspaces=false            %
 \author{
 		\normalfont 								\normalsize
         Palomino Paucar, Daniel Alfredo\\[-3pt]		\normalsize
-        Noviembre 26, 2018
+        Noviembre 26, 2018 \\
+        \url{https://bit.ly/2r7y556}
 }
 \date{}
 
@@ -132,6 +133,8 @@ showstringspaces=false            %
 \begin{enumerate}
     \item Usando cualquier lenguaje de programación grafique $S,\ H_1,\ H_2,\ H_3\ y\ H_4$.
     
+    \textbf{Respuesta:}
+    
     \includegraphics[scale=0.4]{S}
     
     \includegraphics[scale=0.4]{H1}
@@ -143,6 +146,8 @@ showstringspaces=false            %
     \includegraphics[scale=0.4]{H4}
     
     \item Encuentre  los parámetros $w$ y $b$ que definen los hiperplanos $H_1,\  H_2,\ H_3\ y\ H_4$, y luego determine para $H_1,\  H_2,\ H_3\ y\ H_4$ si son hiperplanos de separación. Fundamente.
+    
+    \textbf{Respuesta:}
     
     Dadas la ecuación vectorial de un hiperplano: $W.X + b = 0$, se tiene al extender la ecuación: $w_1.x_1 + w_2.x_2 + w_3.w_3 +b = 0$.
     
@@ -198,10 +203,14 @@ showstringspaces=false            %
     
     \item En el conjunto $H$, ¿cuántos hiperplanos iguales existen?. En el caso de que existan ¿cuáles son éstos? Fundamente.\\
     
+    \textbf{Respuesta:}
+    
     Existen 2 hiperplanos iguales $H_1\ y\ H_3$, dado que si a la ecuación de $H_3$ la dividimos entre $\sqrt{\frac{1}{2}}$ tendríamos la misma ecuación que $H_1$.\\
     
     
     \item Calcule el margen $\tau$ para cada hiperplano de separación. Luego, suponga que el conjunto $H$ contiene al hiperplano óptimo  $H^*$, ¿cuál sería $H^*$? Fundamente.\\
+    
+    \textbf{Respuesta:}
     
     \begin{enumerate}
         \item $H_1$:
@@ -218,6 +227,8 @@ showstringspaces=false            %
     
     \item ¿Cuáles son los vectores de soporte del hiperplano $H^*$ escogido en la pregunta anterior?. Fundamente. (No necesita encontrar los valores $\alpha$)\\
     
+    \textbf{Respuesta:}
+    
     Los vectores de soporte del hiperplano óptimo elegido ($H_1$ o $H_3$)serían:
     
     $$(4,6,-1),\ (5,1,1),\ (9,5,1)$$
@@ -225,6 +236,8 @@ showstringspaces=false            %
     pues se encuentran en el margen óptimo, teniendo cada vector el $\tau$ mínimo de $2.1313$.\\
     
     \item Demuestre la primera condición KKT, i.e. (Ec. 7 de las diapositivas) $\frac{\partial L}{\partial w}(w^*, b^*, \alpha) = w^* - \sum_{i=1}^{m}\alpha_iy(i)x^{i}$\\
+    
+    \textbf{Respuesta:}
     
     Sea: $$L = \frac{1}{2}W.W^T - \sum_{i=1}^{m}\alpha_i[y^{(i)}(W^{T}X^{(i)} + b) - 1]$$
     
@@ -259,6 +272,8 @@ showstringspaces=false            %
 
     \item Usando cualquier lenguaje de programación grafique $N$ y $H_5$.
     
+    \textbf{Respuesta:}
+    
     Graficando:
         
     \includegraphics[scale=0.4]{N}
@@ -266,6 +281,8 @@ showstringspaces=false            %
     \includegraphics[scale=0.4]{N_H5}
     
     \item Identifique los ejemplos que son separables y los que no lo son. Luego, determine los ejemplos que son clasificados correctamente y los que no.
+    
+    \textbf{Respuesta:}
     
     Para que un vector sea separable debe cumplir:
     
@@ -299,9 +316,21 @@ showstringspaces=false            %
     y los no clasficados correctamente son:\\
     ${((0,3),1), ((3,1),-1)}$\\
     
-    \item Calcule la ... de los ejemplos no separables.
+    \item Calcule la holgura de los ejemplos no separables.
     
-    Enuncidado NO definido.
+    \textbf{Respuesta:}
+    
+    Dado que:
+    
+    $$y_i(W^TX)\geq 1 - \epsilon_i$$
+    
+    Se tendrá para los ejemplos no separables ${((0,3),1), ((2,2),-1), ((3,1),-1)}$:
+    
+    \begin{enumerate}
+        \item $((0,3),\ 1)$: $\epsilon_i = 4$
+        \item $((2,2),-1)$: $\epsilon_i = 1$
+        \item $((3,1),-1)$: $\epsilon_i = 3$
+    \end{enumerate}
 
 \end{enumerate}
 \newpage
@@ -310,7 +339,25 @@ showstringspaces=false            %
 \begin{enumerate}
     \item Explique el significados de la constante $C$ en el término $C\sum_{i=1}\epsilon_i$ que se agrega a la función objetivo en el caso de ejemplos casi linealmente separables. Luego, explique la influencia de $C$ en la capacidad de generalización de una SVM.
     
+    \textbf{Respuesta:}
+    
+    El parámetro $C$ está asociado al mejoramiento de la generalización del sistema evitando el overfitting, es análogo al parámetro de regularización usando en redes neuronales.
+    
+    El parámetro $C$ le dice al sistema SVM que tanto quiere que se evite el error de clasficación (misclassifying) por cada ejemplo de entrenamiento. 
+    
+    Para valores grandes de $C$, la optimización elegirá un hiperplano de margen angosto si es que ese hiperplano realiza un mejor trabajo en clasificar correctamente todos los ejemplos de entrenamiento.
+    
+    Por el contrario, un valor muye pequeño de $C$ causará que sistema busque un hiperplano de margen amplio, incluso si ese hiperplano clasifica incorrectamente más puntos.
+    
     \item Describa el significado del parámetro $\gamma$ en el kernel gaussiano. Luego, explique la influencia de $\gamma$ en la capacidad de generalización de una SVM.
+    
+    \textbf{Respuesta:}
+    
+    El parámetro $\gamma$ es el parámetro libre de la función base del radio gausiano.
+    
+    Un valor pequeño de $\gamma$ significa una función gaussiana con una varianza grande, así que la influencia de $x_j$ es más grande hacia $x_i$. Es decir, si $x_j$ es un vector de soporte, un valor pequeño de $\gamma$ implica que la clase de este vector de soporte tendrá influencia en decidir la clase del vector $x_i$ incluso si la distancia entre ellos es grande.
+    
+    Por el contrario, si $\gamma$ tiene un valor muy grande entonces la varianza será pequeña, lo que implica que el vector de soporte no tendrá una influencia importante sobre vectores más alejados.
     
 \end{enumerate}
 
@@ -320,41 +367,47 @@ showstringspaces=false            %
 \begin{enumerate}
     \item Usando Scikit-learn de Python, implemente (comente su código) una svm que clasifique el conjunto de datos (por definir).
     
-    Como no se ha incluído el dataset, he propuesto trabajar el presente ejercicio con el siguiente dataset (banknote authentication):\\
-    \url{https://drive.google.com/file/d/13nw-uRXPY8XIZQxKRNZ3yYlho-CYm_Qt/view}\\
+    \textbf{Implementación:}
+    
+    Como no se ha incluído el dataset, he propuesto trabajar el presente ejercicio con el siguiente dataset (Iris Flower):\\
+    \url{https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data}\\
     
     \textbf{Lectura de Dataset}
     
     \begin{python}
-    import pandas as pd  
     import numpy as np  
     import matplotlib.pyplot as plt  
-    %matplotlib inline
+    import pandas as pd
     
+    url = "https://archive.ics.uci.edu/ml/machine-learning-databases"
+          "/iris/iris.data"
+    # Asignar columnas al Dataset para su posterior lectura
+    colnames = ['sepal-length', 'sepal-width', 
+                'petal-length', 'petal-width', 'Class']
     # Lectura del Dataset usando pandas
-    bankdata = pd.read_csv("bill_authentication.csv")
+    irisdata = pd.read_csv(url, names=colnames)
     \end{python}
     
     \textbf{Exploración de Datos}
     
     \begin{python}
     # Dimensiones del Dataset
-    bankdata.shape
-    # Descripcion del Dataset
-    bankdata.head()
+    irisdata.shape
+    # Descripción del Dataset
+    irisdata.head()
     \end{python}
     
     \includegraphics[scale=0.8]{df1_head}
-    
+    \newpage
     \textbf{Preprocesamiento}
     
     \begin{python}
-    # Separacion de las columnas del dataset para crear los valores de entrada 
+    # Separación de las columnas del dataset para crear los valores de entrada
     # y el valor de salida
-    X = bankdata.drop('Class', axis=1)
-    y = bankdata['Class']
-    from sklearn.model_selection import train_test_split
+    X = irisdata.drop('Class', axis=1)  
+    y = irisdata['Class'] 
     # Separación del dataset en valores de entranemiento y testeo
+    from sklearn.model_selection import train_test_split  
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
     \end{python}
     
@@ -381,8 +434,10 @@ showstringspaces=false            %
     \end{python}
     
     \includegraphics[scale=0.8]{df1_results}
-    
+    \newpage
     \item Experimente y muestre resultados usando diferentes valores para los parámetros de los kernels: lineal, polinomial, gaussiano, y el parámetro $C$. Los resultados deben ser mostrados en el documento pdf.
+    
+    \textbf{Implementación:}
     
     Como no se ha incluído el dataset, he propuesto trabajar el presente ejercicio con el siguiente dataset (Iris Flower): \url{https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data}\\
     
@@ -410,7 +465,7 @@ showstringspaces=false            %
     \end{python}
     
     \includegraphics[scale=0.8]{df2_head}
-    
+    \newpage
     \textbf{Preprocesamiento}
     
     \begin{python}
@@ -429,8 +484,8 @@ showstringspaces=false            %
     
     \begin{python}
     from sklearn.svm import SVC
-    # Elección del Kernel: linear
-    svclassifier = SVC(kernel='linear')
+    # Elección del Kernel: linear Y parámetro C=2.0
+    svclassifier = SVC(kernel='linear', C=2.0)
     # Ejecución del entrenamiento
     svclassifier.fit(X_train, y_train)
     \end{python}
@@ -448,15 +503,15 @@ showstringspaces=false            %
     \end{python}
     
     \includegraphics[scale=0.8]{df2_results_linear}
-    
+    \newpage
     \textbf{Polinomial}
     
     \textbf{Entrenamiento}
     
     \begin{python}
     from sklearn.svm import SVC
-    # Elección del Kernel: poly
-    svclassifier = SVC(kernel='poly')
+    # Elección del Kernel: poly Y parámetro C=0.5
+    svclassifier = SVC(kernel='poly', degree=8, C=0.5)
     # Ejecución del entrenamiento
     svclassifier.fit(X_train, y_train)
     \end{python}
@@ -486,7 +541,7 @@ showstringspaces=false            %
     # Ejecución del entrenamiento
     svclassifier.fit(X_train, y_train)
     \end{python}
-    
+    \newpage
     \textbf{Predicción y Validación}
     
     \begin{python}
@@ -502,6 +557,8 @@ showstringspaces=false            %
     \includegraphics[scale=0.8]{df2_results_gaussian}
     
     \item Dentro de la sección de Implementación incluya una subsección donde indique las instrucciones para ejecutar el código.
+    
+    \textbf{Implementación:}
     
     La presente implementación ha sido realizada en python 3.6 usando anaconda y jupyter-lab como herramientas de virtualización y visualización.
     
