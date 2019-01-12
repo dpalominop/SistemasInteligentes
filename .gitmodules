@@ -1,0 +1,6 @@
+[submodule "FinalProject"]
+	path = FinalProject
+	url = git@github.com:UCSP-SI/AdvacedSentimentAnalysis.git
+[submodule "PythonDataScienceHandbook"]
+	path = PythonDataScienceHandbook
+	url = https://github.com/jakevdp/PythonDataScienceHandbook.git
