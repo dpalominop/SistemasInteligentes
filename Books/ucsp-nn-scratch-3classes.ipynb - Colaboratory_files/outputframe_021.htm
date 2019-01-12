@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta charset="UTF-8">
+<script>
+  // Avoid => literals to stay ES6 compatible for the sake of googlebot.
+  window.addEventListener('message', function(message)  {
+    if (message.source != window.parent) {
+      return;
+    }
+    if (message.data.sandboxed_iframe_evaluation) {
+      // Message is available in scope so evaluated script can get params from
+      // it.
+      window.currentMessage = message;
+      eval.call(null, message.data.sandboxed_iframe_evaluation);
+      delete window.currentMessage;
+    }
+  });
+</script>
+<!-- base href="https://colab.research.google.com/github/dpalominop/SistemasInteligentes/blob/master/semana4/homeworks/ucsp-nn-scratch-3classes.ipynb" --><link rel="stylesheet" href="outputframe_data_024/outputframe.css"></head><body><div id="output-area"><span id="output-header"> </span><div id="output-body"><div class="stream"><div class="output_subarea output_text"><pre>random-based init
+random-based init
+Cost after iteration 0: 1.098782
+Cost after iteration 100: 0.719103
+Cost after iteration 200: 0.723514
+Cost after iteration 300: 0.663791
+Cost after iteration 400: 0.414536
+Cost after iteration 500: 0.378575
+Cost after iteration 600: 0.362849
+Cost after iteration 700: 0.346373
+Cost after iteration 800: 0.323276
+Cost after iteration 900: 0.310680
+Cost after iteration 1000: 0.297677
+Cost after iteration 1100: 0.287132
+Cost after iteration 1200: 0.277655
+Cost after iteration 1300: 0.279178
+Cost after iteration 1400: 0.271069
+Cost after iteration 1500: 0.267166
+Cost after iteration 1600: 0.264247
+Cost after iteration 1700: 0.261671
+Cost after iteration 1800: 0.259553
+Cost after iteration 1900: 0.257770
+Cost after iteration 2000: 0.256176
+Cost after iteration 2100: 0.254729
+Cost after iteration 2200: 0.253403
+Cost after iteration 2300: 0.252155
+Cost after iteration 2400: 0.251092
+Cost after iteration 2500: 0.250193
+Cost after iteration 2600: 0.249466
+Cost after iteration 2700: 0.248823
+Cost after iteration 2800: 0.248247
+Cost after iteration 2900: 0.247786
+training accuracy: 0.98
+</pre></div></div></div><span id="output-footer"></span></div></body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta charset="UTF-8">
+<script>
+  // Avoid => literals to stay ES6 compatible for the sake of googlebot.
+  window.addEventListener('message', function(message)  {
+    if (message.source != window.parent) {
+      return;
+    }
+    if (message.data.sandboxed_iframe_evaluation) {
+      // Message is available in scope so evaluated script can get params from
+      // it.
+      window.currentMessage = message;
+      eval.call(null, message.data.sandboxed_iframe_evaluation);
+      delete window.currentMessage;
+    }
+  });
+</script>
+<!-- base href="https://colab.research.google.com/github/dpalominop/SistemasInteligentes/blob/master/semana4/homeworks/ucsp-nn-scratch-3classes.ipynb" --><link rel="stylesheet" href="outputframe_data_024/outputframe.css"></head><body><div id="output-area"><span id="output-header"> </span><div id="output-body"><div class="stream"><div class="output_subarea output_text"><pre>random-based init
+Cost after iteration 0: 1.096919
+Cost after iteration 10: 0.917310
+Cost after iteration 20: 0.851535
+Cost after iteration 30: 0.822352
+Cost after iteration 40: 0.807594
+Cost after iteration 50: 0.799452
+Cost after iteration 60: 0.794683
+Cost after iteration 70: 0.791765
+Cost after iteration 80: 0.789921
+Cost after iteration 90: 0.788726
+Cost after iteration 100: 0.787937
+Cost after iteration 110: 0.787408
+Cost after iteration 120: 0.787049
+Cost after iteration 130: 0.786803
+Cost after iteration 140: 0.786633
+Cost after iteration 150: 0.786514
+Cost after iteration 160: 0.786431
+Cost after iteration 170: 0.786373
+Cost after iteration 180: 0.786331
+Cost after iteration 190: 0.786302
+Cost after iteration 200: 0.786281
+Cost after iteration 210: 0.786267
+Cost after iteration 220: 0.786256
+Cost after iteration 230: 0.786249
+Cost after iteration 240: 0.786243
+Cost after iteration 250: 0.786239
+Cost after iteration 260: 0.786237
+Cost after iteration 270: 0.786235
+Cost after iteration 280: 0.786233
+Cost after iteration 290: 0.786232
+training accuracy: 0.49
+</pre></div></div></div><span id="output-footer"></span></div></body></html>
