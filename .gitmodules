@@ -1,3 +1,6 @@
 [submodule "PythonDataScienceHandbook"]
 	path = PythonDataScienceHandbook
 	url = https://github.com/jakevdp/PythonDataScienceHandbook.git
+[submodule "AdvacedSentimentAnalysis"]
+	path = AdvacedSentimentAnalysis
+	url = git@github.com:UCSP-SI/AdvacedSentimentAnalysis.git
