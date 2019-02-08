@@ -12,7 +12,7 @@ https://docs.gimp.org/2.10/es/plug-in-retinex.html
 ## Descriptor:
 haralick : Carlos Caetano
 
-##References:
+## References:
 
 https://www.researchgate.net/profile/Carlos_Caetano
 https://machinelearningmastery.com/deep-learning-models-for-human-activity-recognition/
